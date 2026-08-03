@@ -1,0 +1,302 @@
+:root {
+  /* Dark is the default theme. */
+  --bg: #16181d;
+  --text: #e8e8e8;
+  --text-muted: #b0b0b0;
+  --text-faint: #888;
+  --border: #333;
+  --border-light: #2a2a2a;
+  --link: #7ea6e0;
+  --link-hover: #a3c2ec;
+  --icon: #c4c4c4;
+}
+
+:root[data-theme="light"] {
+  --bg: #ffffff;
+  --text: #222;
+  --text-muted: #555;
+  --text-faint: #777;
+  --border: #ddd;
+  --border-light: #eee;
+  --link: #1B3358;
+  --link-hover: #2a4d80;
+  --icon: #444;
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  transition: color 0.15s ease;
+}
+
+#neuron-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  display: block;
+  pointer-events: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+a {
+  color: var(--link);
+}
+
+a:hover {
+  color: var(--link-hover);
+}
+
+.wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+header {
+  border-bottom: 1px solid var(--border);
+  padding: 18px 0;
+  margin-bottom: 30px;
+}
+
+header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+header a {
+  text-decoration: none;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+header nav a {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+header a:hover {
+  text-decoration: underline;
+  color: var(--text);
+}
+
+.icon-link {
+  display: flex;
+  align-items: center;
+  color: var(--icon);
+}
+
+.icon-link:hover {
+  color: var(--link);
+  text-decoration: none;
+  opacity: 0.75;
+}
+
+.social-links {
+  display: flex;
+  gap: 18px;
+  margin-top: 8px;
+  margin-bottom: 32px;
+}
+
+/* Theme toggle */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  cursor: pointer;
+  color: var(--icon);
+}
+
+.theme-toggle:hover {
+  border-color: var(--link);
+  color: var(--link);
+}
+
+/* Default (dark) theme: show the sun icon as the action to switch to light. */
+.theme-toggle .icon-sun {
+  display: block;
+}
+
+.theme-toggle .icon-moon {
+  display: none;
+}
+
+:root[data-theme="light"] .theme-toggle .icon-sun {
+  display: none;
+}
+
+:root[data-theme="light"] .theme-toggle .icon-moon {
+  display: block;
+}
+
+/* About */
+.about-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.about-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+h1 {
+  font-size: 1.6rem;
+  margin: 0 0 6px;
+}
+
+.role {
+  color: var(--text-muted);
+  margin: 0 0 16px;
+}
+
+.typewriter-cursor {
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.quote {
+  margin: 0 0 24px;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+.quote-label {
+  font-style: normal;
+  font-size: 0.85rem;
+  color: var(--text-faint);
+}
+
+/* Blog list */
+.post-entry {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.post-entry:first-child {
+  padding-top: 0;
+}
+
+.post-date {
+  font-size: 0.85rem;
+  color: var(--text-faint);
+}
+
+.post-meta {
+  font-size: 0.85rem;
+  color: var(--text-faint);
+}
+
+.post-meta .dot {
+  margin: 0 6px;
+}
+
+.copy-link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--text-faint);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.copy-link-btn:hover {
+  color: var(--link);
+}
+
+.post-title {
+  font-size: 1.15rem;
+  margin: 4px 0;
+}
+
+.post-title a {
+  text-decoration: none;
+  color: var(--text);
+}
+
+.post-title a:hover {
+  text-decoration: underline;
+}
+
+.post-excerpt {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Single post */
+.post-body h2 {
+  font-size: 1.2rem;
+  margin-top: 28px;
+}
+
+.post-body pre {
+  background: var(--border-light);
+  padding: 12px;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+.post-body code {
+  background: var(--border-light);
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+.post-body pre code {
+  background: none;
+  padding: 0;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 24px;
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+  padding: 20px 0 50px;
+  color: var(--text-faint);
+  font-size: 0.85rem;
+}
