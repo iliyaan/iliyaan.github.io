@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iliyaan</title>
+<meta property="og:type" content="article">
+<meta property="og:image" content="../images/pfp.jpeg">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+<script>
+  (function () {
+    var t = localStorage.getItem("theme");
+    if (t) document.documentElement.setAttribute("data-theme", t);
+  })();
+</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<canvas id="neuron-bg"></canvas>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../files/Iliyaan_Bhulani_CV_2026.pdf" target="_blank" rel="noopener">CV</a>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <article>
+    <div class="post-meta">
+      <span id="post-date"></span><span class="dot">·</span><span id="post-reading-time"></span><span class="dot">·</span><button id="copy-link" class="copy-link-btn" aria-label="Copy link to this post" title="Copy link">Copy link</button>
+    </div>
+    <h1 id="post-title"></h1>
+    <div class="post-body" id="post-body"></div>
+    <a class="back-link" href="../blog.html">← Back to all posts</a>
+  </article>
+</main>
+
+<footer class="wrap">
+  &copy; 2026 Iliyaan
+</footer>
+
+<script>window.POST_SLUG = "post-2";</script>
+<script src="../js/markdown.js"></script>
+<script src="../js/post.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../js/neurons.js"></script>
+<script src="../js/copy-link.js"></script>
+
+</body>
+</html>

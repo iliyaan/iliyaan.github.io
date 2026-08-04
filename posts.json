@@ -4,5 +4,11 @@
     "title": "Starting this site",
     "date": "Aug 2026",
     "excerpt": "Why I'm building this, and what I plan to write about here."
+  },
+  {
+    "slug": "post-2",
+    "title": "Forward Hooks in PyTorch",
+    "date": "Aug 2026",
+    "excerpt": "Using forward hooks to peek inside neural networks and see how each layer activates."
   }
 ]
