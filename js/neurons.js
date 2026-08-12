@@ -7,8 +7,26 @@
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var ctx = canvas.getContext("2d");
   var nodes = [];
+  var anchorNodes = [];
   var pulses = [];
   var width, height, dpr;
+
+  function refreshAnchors() {
+    var els = document.querySelectorAll(".post-thumb");
+    anchorNodes = Array.prototype.map.call(els, function (el) {
+      return { el: el, x: 0, y: 0, anchor: true, glow: 0 };
+    });
+    updateAnchorPositions();
+  }
+
+  function updateAnchorPositions() {
+    for (var i = 0; i < anchorNodes.length; i++) {
+      var a = anchorNodes[i];
+      var r = a.el.getBoundingClientRect();
+      a.x = r.left + r.width / 2;
+      a.y = r.top + r.height / 2;
+    }
+  }
 
   function themeColor(name) {
     return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -37,11 +55,12 @@
   }
 
   function maybeSpawnPulse() {
-    if (Math.random() > 0.02 || nodes.length < 2) return;
-    var a = nodes[Math.floor(Math.random() * nodes.length)];
+    var all = nodes.concat(anchorNodes);
+    if (Math.random() > 0.02 || all.length < 2) return;
+    var a = all[Math.floor(Math.random() * all.length)];
     var closest = null, closestDist = Infinity;
-    for (var i = 0; i < nodes.length; i++) {
-      var b = nodes[i];
+    for (var i = 0; i < all.length; i++) {
+      var b = all[i];
       if (b === a) continue;
       var d = (b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y);
       if (d < closestDist) { closestDist = d; closest = b; }
@@ -59,9 +78,18 @@
       if (n.x < 0 || n.x > width) n.vx *= -1;
       if (n.y < 0 || n.y > height) n.vy *= -1;
     }
+    updateAnchorPositions();
     for (var p = pulses.length - 1; p >= 0; p--) {
       pulses[p].t += 0.02;
-      if (pulses[p].t >= 1) pulses.splice(p, 1);
+      if (pulses[p].t >= 1) {
+        if (pulses[p].to.anchor) pulses[p].to.glow = 1;
+        pulses.splice(p, 1);
+      }
+    }
+    for (var g = 0; g < anchorNodes.length; g++) {
+      var an = anchorNodes[g];
+      if (an.glow > 0) an.glow = Math.max(0, an.glow - 0.03);
+      an.el.style.setProperty("--glow", an.glow.toFixed(3));
     }
     maybeSpawnPulse();
   }
@@ -75,9 +103,10 @@
     ctx.fillStyle = bg;
     ctx.fillRect(0, 0, width, height);
 
-    for (var i = 0; i < nodes.length; i++) {
-      for (var j = i + 1; j < nodes.length; j++) {
-        var a = nodes[i], b = nodes[j];
+    var allNodes = nodes.concat(anchorNodes);
+    for (var i = 0; i < allNodes.length; i++) {
+      for (var j = i + 1; j < allNodes.length; j++) {
+        var a = allNodes[i], b = allNodes[j];
         var dx = a.x - b.x, dy = a.y - b.y;
         var dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < 140) {
@@ -126,7 +155,9 @@
   });
 
   window.addEventListener("resize", resize);
+  window.addEventListener("posts-rendered", refreshAnchors);
   resize();
+  refreshAnchors();
 
   if (reduceMotion) {
     draw();

@@ -26,5 +26,6 @@
           "</div>";
         container.appendChild(entry);
       });
+      window.dispatchEvent(new Event("posts-rendered"));
     });
 })();

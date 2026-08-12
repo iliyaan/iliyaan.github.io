@@ -230,6 +230,8 @@ h1 {
   object-fit: contain;
   border-radius: 8px;
   display: block;
+  box-shadow: 0 0 calc(var(--glow, 0) * 20px) calc(var(--glow, 0) * 4px) var(--link);
+  transition: box-shadow 0.05s linear;
 }
 
 .post-entry-body {
