@@ -1,6 +1,6 @@
 [
   {
-    "slug": "blog1",
+    "slug": "forward-hooks-in-pytorch",
     "title": "Forward Hooks in PyTorch",
     "date": "Aug 2026",
     "excerpt": "Using forward hooks to peek inside neural networks and see how each layer activates.",
