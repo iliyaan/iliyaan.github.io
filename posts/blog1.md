@@ -14,7 +14,7 @@ For example, consider the artificial neural network model: ResNet50. Aside from 
 
 They allow anyone to literally “hook” a layer and listen to its activations. 
 
-![image of a man hooking features](./assets/forwardhooks-img1.png){width=300px}
+![image of a man hooking features](./assets/forwardhooks-img1.png){width=40%}
 
 To apply forward hooks: we can use a neat pytorch function: [“register_module_forward_hook” ](https://docs.pytorch.org/docs/2.13/generated/torch.nn.modules.module.register_module_forward_hook.html)
 
