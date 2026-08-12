@@ -24,6 +24,29 @@ function escapeHtml(s) {
     .replace(/"/g, "&quot;");
 }
 
+var PYTHON_KEYWORDS = /^(False|None|True|and|as|assert|async|await|break|class|continue|def|del|elif|else|except|finally|for|from|global|if|import|in|is|lambda|nonlocal|not|or|pass|raise|return|try|while|with|yield)$/;
+
+function highlightPython(code) {
+  var re = /(#.*)|("""[\s\S]*?"""|'''[\s\S]*?'''|"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|(\b\d+\.?\d*\b)|([A-Za-z_]\w*)/g;
+  var out = "";
+  var last = 0;
+  var m;
+  while ((m = re.exec(code))) {
+    out += escapeHtml(code.slice(last, m.index));
+    if (m[1]) out += '<span class="tok-comment">' + escapeHtml(m[1]) + "</span>";
+    else if (m[2]) out += '<span class="tok-string">' + escapeHtml(m[2]) + "</span>";
+    else if (m[3]) out += '<span class="tok-number">' + escapeHtml(m[3]) + "</span>";
+    else if (m[4]) {
+      out += PYTHON_KEYWORDS.test(m[4])
+        ? '<span class="tok-keyword">' + m[4] + "</span>"
+        : escapeHtml(m[4]);
+    }
+    last = re.lastIndex;
+  }
+  out += escapeHtml(code.slice(last));
+  return out;
+}
+
 function renderInline(text) {
   text = escapeHtml(text);
   text = text.replace(/`([^`]+)`/g, "<code>$1</code>");
@@ -53,7 +76,9 @@ function renderMarkdown(md) {
   while (i < lines.length) {
     var line = lines[i];
 
-    if (/^```/.test(line)) {
+    var fenceOpen = line.match(/^```(\w*)/);
+    if (fenceOpen) {
+      var lang = fenceOpen[1];
       var code = [];
       i++;
       while (i < lines.length && !/^```/.test(lines[i])) {
@@ -61,7 +86,10 @@ function renderMarkdown(md) {
         i++;
       }
       closeList();
-      html.push("<pre><code>" + escapeHtml(code.join("\n")) + "</code></pre>");
+      var codeText = code.join("\n");
+      var rendered = lang === "python" ? highlightPython(codeText) : escapeHtml(codeText);
+      var cls = lang ? ' class="language-' + lang + '"' : "";
+      html.push("<pre><code" + cls + ">" + rendered + "</code></pre>");
       i++;
       continue;
     }

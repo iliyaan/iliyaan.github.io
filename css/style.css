@@ -297,6 +297,24 @@ h1 {
   overflow-x: auto;
 }
 
+.tok-keyword {
+  color: #cf5da8;
+  font-weight: 600;
+}
+
+.tok-string {
+  color: #3f8a4c;
+}
+
+.tok-comment {
+  color: var(--text-faint);
+  font-style: italic;
+}
+
+.tok-number {
+  color: #b5651d;
+}
+
 .post-body code {
   background: var(--border-light);
   padding: 2px 5px;
