@@ -13,10 +13,17 @@
       posts.slice(0, limit).forEach(function (post) {
         var entry = document.createElement("div");
         entry.className = "post-entry";
+        var href = prefix + "posts/" + post.slug + ".html";
+        var thumb = post.image
+          ? '<a class="post-thumb" href="' + href + '"><img src="' + prefix + post.image + '" alt=""></a>'
+          : "";
         entry.innerHTML =
+          thumb +
+          '<div class="post-entry-body">' +
           '<div class="post-date">' + post.date + "</div>" +
-          '<div class="post-title"><a href="' + prefix + "posts/" + post.slug + '.html">' + post.title + "</a></div>" +
-          '<p class="post-excerpt">' + post.excerpt + "</p>";
+          '<div class="post-title"><a href="' + href + '">' + post.title + "</a></div>" +
+          '<p class="post-excerpt">' + post.excerpt + "</p>" +
+          "</div>";
         container.appendChild(entry);
       });
     });

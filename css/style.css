@@ -208,12 +208,32 @@ h1 {
 
 /* Blog list */
 .post-entry {
+  display: flex;
+  align-items: center;
+  gap: 16px;
   padding: 16px 0;
   border-bottom: 1px solid var(--border-light);
 }
 
 .post-entry:first-child {
   padding-top: 0;
+}
+
+.post-thumb {
+  flex: 0 0 auto;
+  display: block;
+}
+
+.post-thumb img {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+.post-entry-body {
+  min-width: 0;
 }
 
 .post-date {
