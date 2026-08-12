@@ -29,7 +29,10 @@ function renderInline(text) {
   text = text.replace(/`([^`]+)`/g, "<code>$1</code>");
   text = text.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
   text = text.replace(/\*([^*]+)\*/g, "<em>$1</em>");
-  text = text.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1">');
+  text = text.replace(/!\[([^\]]*)\]\(([^)]+)\)(?:\{width=([^}]+)\})?/g, function (m, alt, src, width) {
+    var style = width ? ' style="width:' + width + '"' : "";
+    return '<img src="' + src + '" alt="' + alt + '"' + style + ">";
+  });
   text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
   return text;
 }
