@@ -1,5 +1,12 @@
 [
   {
+    "slug": "ann-activations-are-wrong",
+    "title": "Some of Your ANN Activations May Be Wrong?",
+    "date": "Sep 2026",
+    "excerpt": "In-place operations in PyTorch can silently overwrite the activations you stored with a forward hook — and how to stop it.",
+    "image": "posts/assets/ann_activations_mustachemanananna.png"
+  },
+  {
     "slug": "forward-hooks-in-pytorch",
     "title": "Forward Hooks in PyTorch",
     "date": "Aug 2026",
