@@ -9,7 +9,7 @@ After fishing 🎣 around with forward hooks from my previous blog, I came acros
 As usual, I used a forward hook with `activations[layer] = output.detach()` to store and read the activations later:
 
 
-(shameless plug: [read my previous blog to know how to fish activations from ANNs](https://iliyaan.github.io/posts/forward-hooks-in-pytorch.html) ;) )
+(shameless plug: [read my previous blog on know how to fish activations from ANNs](https://iliyaan.github.io/posts/forward-hooks-in-pytorch.html) ;) )
 
 That looks about right? Well, when I looked under the hood - my activations were changing!
 
