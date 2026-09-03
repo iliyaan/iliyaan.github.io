@@ -1,7 +1,7 @@
 ---
 title: Some of Your ANN Activations May Be Wrong?
 date: September 2026
-excerpt: In-place operations in PyTorch can silently overwrite the activations you stored with a forward hook — and how to stop it.
+excerpt: what??
 ---
 
 After fishing 🎣 around with forward hooks from my previous blog, I came across something interesting. Some of my intermediate layers were betraying me.. What? Yeah!
