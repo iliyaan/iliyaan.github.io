@@ -6,11 +6,8 @@ excerpt: what??
 
 After fishing 🎣 around with forward hooks from my previous blog, I came across something interesting. Some of my intermediate layers were betraying me.. What? Yeah!
 
-As usual, I used a forward hook with `output.detach()` to store and read the activations later:
+As usual, I used a forward hook with `activations[layer] = output.detach()` to store and read the activations later:
 
-```python
-activations[layer] = output.detach()
-```
 
 (shameless plug: [read my previous blog to know how to fish activations from ANNs](https://iliyaan.github.io/posts/forward-hooks-in-pytorch.html) ;) )
 
