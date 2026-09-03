@@ -37,7 +37,7 @@ Here's the catch, this only saves `bn1`, because that is the only one affected b
 For something like `bn3`, the situation is different:
 
 1. The hook fires and we use `output.detach()` to save a reference to it.
-2. The first change: residual addition. `out += identity` - and because `+=` is also in-place, your `bn3` changes.
+2. The first change: residual addition (skip connection). `out += identity` - and because `+=` is also in-place, your `bn3` changes.
 3. The second change: `self.relu(out)`, which again operates in-place on the same memory.
 
 At the end, `bn3` is the post-addition, post-ReLU output.
